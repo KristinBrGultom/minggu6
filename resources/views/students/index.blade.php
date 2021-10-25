@@ -29,12 +29,14 @@
                                 <td>{{ $s->name }}</td>
                                 <td>{{ $s->class }}</td>
                                 <td>{{ $s->department }}</td>
+                                <td>{{$s->view}}</td>
                                 <td>
                                     <form action="/students/{{$s->id}}" method="post">
                                     <a href="/students/{{$s->id}}/edit" class="btn btn-warning">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                                    <button type="submit" name="view" class="btn btn-danger">view</button>
                                     </form>
                                 </td>
                             </tr>
