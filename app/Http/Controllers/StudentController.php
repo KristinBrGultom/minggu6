@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
@@ -14,7 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-return view('students.index',['student'=>$students]);
+        return view('students.index', ['student'=>$students]);
     }
 
     /**
@@ -24,7 +25,7 @@ return view('students.index',['student'=>$students]);
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -35,7 +36,11 @@ return view('students.index',['student'=>$students]);
      */
     public function store(Request $request)
     {
-        //
+        //add data
+         Student::create($request->all());
+        // if true, redirect to index
+        return redirect()->route('students.index')
+        ->with('success', 'Add data success!');
     }
 
     /**
