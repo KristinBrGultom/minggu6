@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Student;
-
 class StudentController extends Controller
 {
     /**
@@ -15,9 +12,8 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return view('students.index', ['student'=>$students]);
+        return view('students.index',['student'=>$students]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +23,6 @@ class StudentController extends Controller
     {
         return view('students.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,12 +32,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //add data
-         Student::create($request->all());
+        Student::create($request->all());
         // if true, redirect to index
         return redirect()->route('students.index')
-        ->with('success', 'Add data success!');
+                         ->with('success', 'Add data success!');
     }
-
     /**
      * Display the specified resource.
      *
@@ -53,7 +47,6 @@ class StudentController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -62,9 +55,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view('students.edit',['student'=>$student]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -74,9 +67,15 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student = Student::find($id);
+        $student->nim = $request->nim;
+        $student->name = $request->name;
+        $student->class = $request->class;
+        $student->department = $request->department;
+        $student->phone_number = $request->phone_number;
+        $student->save();
+        return redirect()->route('students.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -85,8 +84,10 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
+        //
         $student = Student::find($id);
         $student->delete();
         return redirect()->route('students.index');
+
     }
 }
