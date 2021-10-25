@@ -45,7 +45,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student=Student::find($id);
+        return view ('students.show ', ['student=>$students']);
     }
     /**
      * Show the form for editing the specified resource.

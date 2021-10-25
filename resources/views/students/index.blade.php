@@ -33,11 +33,14 @@
                                 <td>
                                     <form action="/students/{{$s->id}}" method="post">
                                     <a href="/students/{{$s->id}}/edit" class="btn btn-warning">Edit</a>
+                                    <a href="/students/{{$s->id}}/edit" class="btn btn-warning">view</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                                    <button type="submit" name="view" class="btn btn-danger">view</button>
-                                    </form>
+                                   
+                                     
+                                </form>
+                                    
                                 </td>
                             </tr>
                             @endforeach
