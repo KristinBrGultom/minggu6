@@ -73,41 +73,11 @@ class StudentController extends Controller
         return view('students.edit',['student'=>$student, 
         'kelas'=>$kelas]);
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $student = Student::find($id);
-        $student->nim = $request->nim;
-        $student->name = $request->name;
-        $student->department = $request->department;
-        $student->phone_number = $request->phone_number;
-        
-        $kelas = new Kelas;
-        $kelas->id = $request->Kelas;
-        
-        $student->kelas()->associate($kelas);
-        $student->save();
-        
-        return redirect()->route('students.index');
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $student = Student::find($id);
-        $student->delete();
-        return redirect()->route('students.index');
 
+    public function detail($id)
+    {
+        $student = Student::find($id);
+        return view('students.detail',['student'=>$student]);
+        
     }
 }
