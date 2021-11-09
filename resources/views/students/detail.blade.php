@@ -4,8 +4,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('STUDENT DATA') }}</div>
+                <div class="card-header"><h2>Student Report</h2></div>
                 <div class="card-body">
+                    <b>Name</b>          : {{ $student->name }} <br>
+                    <b>NIM</b>          : {{ $student->nim }} <br>
+                    <b>Class</b>          : {{ $student->kelas->class_name }} <br><br>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -23,14 +30,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($student as $s)
+                            @foreach($student->courses as $sc)
                             <tr>
-                                <td>{{ $s->nim }}</td>
-                                <td>{{ $s->name }}</td>
-                                <td>{{ $s->kelas->class_name  }}</td>
-                                <td>{{ $s->department }}</td>
-                                <td>{{$s->view}}</td>
-                                <td>
+                                <td>{{ $s->course_name  }}</td>
+                                <td>{{ $sc->semester }}</td>
+                                <td>{{ $sc->sks  }}</td>
+                                <td>{{ $sc->pivot->nilai}}</td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                            </table>
                                     <form action="/students/{{$s->id}}" method="post">
                                     <a href="/students/{{$s->id}}/edit" class="btn btn-warning">Edit</a>
                                     <a href="/students/{{$s->id}}/edit" class="btn btn-warning">view</a>

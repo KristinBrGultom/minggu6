@@ -19,4 +19,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('students', StudentController::class);
+
+Route::get('student','StudentController');
+
+Route::get('/search', [StudentController::class, 'search']);
+
+Route::get('/students/{id}/detail', [StudentController::class, 'detail']);
+
+Route::get('/students/{id}/report', [StudentController::class, 'report']);
