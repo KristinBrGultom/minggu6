@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{ $s->nim }}</td>
                                 <td>{{ $s->name }}</td>
-                                <td>{{ $s->class }}</td>
+                                <td>{{ $s->kelas->class_name  }}</td>
                                 <td>{{ $s->department }}</td>
                                 <td>{{$s->view}}</td>
                                 <td>
@@ -37,8 +37,14 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                                   
-                                     
+                                    <tr>
+                                <td>{{ $s->nim }}</td>
+                                <td>{{ $s->name }}</td>
+                                <td>{{ $s->class }}</td>
+                                <td>{{ $s->department }}</td>
+                                <td>{{$s->phone_number}}</td>
+                                <td>   
+                                    </tr>           
                                 </form>
                                     
                                 </td>
@@ -46,7 +52,15 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div class="form-group">
+                      <label for="Kelas">Class</label>
+                      <select class="form-control" name="Kelas">
+                          @foreach($kelas as $class)
+                              <option value="{{$class->id}}"> 
+                                   {{ $class->class_name }} 
+                              </option>
+                          @endforeach
+                        </select></br>>
             </div>
         </div>
     </div>
